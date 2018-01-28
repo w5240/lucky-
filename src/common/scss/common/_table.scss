@@ -1,0 +1,135 @@
+@charset "UTF-8";
+
+@import "../base/variables";
+@import "../base/mixin";
+
+.table {
+    
+    &.padding {
+        padding: 9px 17px 0;
+    }
+    
+    &.panel-table {
+        height: 100%;
+        padding: 0 20px 20px;
+        background-color: white;
+        @include border-radius(2px);
+        @include clearfix();
+        
+        .panel-table-title {
+            line-height: 45px;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        
+        .table-actions {
+            color: $color-gray-content;
+        }
+        
+        .panel-table-buttons {
+            text-align: right;
+            padding-right: 7px;
+        }
+        
+        .panel-table-wrapper {
+            height: -webkit-calc(100% - (46px + 37px + 43px + 35px + 40px));
+            height: calc(100% - (46px + 37px + 43px + 35px + 40px));
+            overflow: auto;
+            margin: 0 0 20px;
+        }
+        
+        table {
+            width: auto;
+            min-width: 100%;
+            
+            th {
+                min-width: 120px;
+            }
+            
+            td {
+                max-width: 20em;
+            }
+        }
+    }
+    
+    .table-actions {
+        padding: 10px 0;
+    }
+    
+    table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        border-spacing: 0;
+        text-align: left;
+        
+        thead {
+            
+            tr {
+                border-bottom: 2px solid $content-bg;
+                line-height: 16px;
+                background-color: #fafafa;
+                
+                &:not(.tiny) {
+                    font-size: 14px;
+                }
+            }
+            
+            th {
+                padding: ($thead-height - 16px)/2 10px;
+                white-space: nowrap;
+                -ms-text-overflow: ellipsis;
+                text-overflow: ellipsis;
+            }
+            
+            .action-th {
+                width: 36px;
+                padding: 0;
+                text-align: center;
+            }
+        }
+        
+        tbody {
+            
+            tr {
+                border-bottom: 1px solid #e0e0e0;
+                line-height: 16px;
+                vertical-align: top;
+                
+                &:nth-child(even) {
+                    background-color: #fafafa;
+                }
+                
+                &:hover {
+                    background-color: $content-bg;
+                    
+                    .table-menu-drawer {
+                        display: block;
+                    }
+                }
+                
+                &.active {
+                    background-color: #fff7dc;
+                }
+                
+                &.link {
+                    cursor: pointer;
+                }
+            }
+            
+            td {
+                &:not(.action-td):not(.select-td) {
+                    padding: ($tbody-height - 16px)/2 10px;
+                    @include ellipsis();
+                }
+                &.select-td{
+                    padding: ($tbody-height - 16px)/2 10px;
+                }
+                &.action-td {
+                    position: relative;
+                    overflow: visible;
+                    padding: 0;
+                }
+            }
+        }
+    }
+}

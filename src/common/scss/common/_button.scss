@@ -1,0 +1,237 @@
+@charset "utf-8";
+
+@import "../base/variables";
+@import "../base/mixin";
+
+.btn {
+    display: inline-block;
+    min-width: 90 - 40px;
+    padding: 0 20px;
+    text-align: center;
+    font-size: 14px;
+    @include border-radius(2px);
+    @include transition(all .2s ease-in);
+    @include box-shadow(0 3px 3px rgba(black, .07));
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    
+    $small-height: 30px;
+    $medium-height: 35px;
+    $large-height: 45px;
+    
+    &.btn-white {
+        color: $color-content; // for a tag
+        background-color: white;
+        border: 1px solid #e0e0e0;
+        
+        &:hover,
+        &.active,
+        &:active {
+            border-color: $gray;
+            background-color: #f0f0f0;
+        }
+        
+        &[disabled] {
+            color: $color-gray-content;
+            border-color: #e0e0e0;
+        }
+    }
+    
+    &.btn-journey-border {
+        color: $sms; // for a tag
+        background-color: white;
+        border: 1px solid $sms;
+        
+        &:hover,
+        &:active {
+            color: $sms-active;
+            border-color: $sms-active;
+            background-color: #f0f0f0;
+        }
+        
+        &[disabled] {
+            color: $color-gray-content;
+            border-color: #e0e0e0;
+        }
+    }
+    
+    &.btn-journey {
+        color: white;
+        border: none;
+        background-color: #0cc2a9;
+        
+        &:hover,
+        &:active {
+            background-color: #0aa590;
+        }
+        
+        &[disabled] {
+            color: rgba(white, .6);
+            background-color: $sms-disabled;
+        }
+    }
+    
+    &.btn-material,
+    &.btn-contact {
+        color: white;
+        border: none;
+        background-color: $contact;
+        
+        &:hover,
+        &:active {
+            background-color: $contact-active;
+        }
+        
+        &[disabled] {
+            color: rgba(white, .6);
+            background-color: $contact-disabled;
+        }
+    }
+    
+    &.btn-sm {
+        line-height: $small-height;
+        
+        &.btn-round {
+            @include border-radius($small-height/2);
+        }
+    }
+    
+    &.btn-md {
+        line-height: $medium-height;
+
+        &.btn-round {
+            @include border-radius($medium-height/2);
+        }
+    }
+    
+    &.btn-lg {
+        line-height: $large-height;
+        
+        &.btn-round {
+            @include border-radius($large-height/2);
+        }
+    }
+    
+    &.btn-group {
+        position: relative;
+        padding: 0;
+        
+        label { // necessary for blur events
+            @include box-sizing();
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding-left: 20px;
+            cursor: pointer;
+        }
+        
+        button.icon { // 右侧图标按钮
+            float: right;
+            height: 100%;
+            width: $large-height;
+            margin-left: 20px;
+            padding: 0;
+            border: none;
+            border-left: 1px solid $contact;
+            border-top-right-radius: $large-height/2;
+            border-bottom-right-radius: $large-height/2;
+            font-size: 20px;
+            color: white;
+            background-color: $contact-active;
+            cursor: pointer;
+        }
+        
+        span.icon { // 右侧图标非按钮
+            padding-right: 20px;
+        }
+        
+        &.btn-lg {
+            .hidden-menu {
+                top: $large-height + 6px;
+                right: 10px;
+                @include transform-origin(center top);
+                
+                &:before{
+                    content: '';
+                    position: absolute;
+                    top: -8px;
+                    left: 0;
+                    right: 0;
+                    height: 8px;
+                }
+            }
+        }
+        
+        &.btn-md {
+            .hidden-menu {
+                top: $medium-height + 6px;
+                right: 0;
+                @include transform-origin(center top);
+            }
+        }
+    }
+    
+    + .btn {
+        margin-left: 10px;
+        vertical-align: top;
+    }
+    
+    &[disabled] {
+        cursor: not-allowed;
+    }
+}
+
+// icon buttons
+.btn-icon-group {
+    
+    $btn-icon-size: 33px;
+    
+    display: inline-block;
+    margin: 0 .5em;
+    vertical-align: middle;
+    @include clearfix();
+    
+    [type="button"] {
+        position: relative;
+        float: left;
+        width: $btn-icon-size;
+        height: $btn-icon-size;
+        line-height: $btn-icon-size - 2px;
+        padding: 0;
+        border: 1px solid #e0e0e0;
+        font-size: 14px;
+        background-color: white;
+        color: $color-light-content;
+        cursor: pointer;
+        @include transition();
+        will-change: box-shadow, border-color;
+        
+        &:first-child {
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+        
+        &:last-child {
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+        
+        &:hover {
+            z-index: 1;
+            color: $color-content;
+            border-left: 1px solid;
+            border-color: $gray;
+            @include box-shadow(0 3px 3px rgba(black, .07));
+        }
+        
+        &.disabled,
+        &[disabled] {
+            cursor: not-allowed;
+        }
+        
+        ~ [type="button"] {
+            margin-left: -1px;
+        }
+    }
+}

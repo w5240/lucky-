@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+@import "../base/variables";
+@import "../base/mixin";
+
+// utilities
+.contact-text {
+    color: $contact
+}
+
+.disabled-text {
+    color: $color-gray-content;
+}
+
+.journey-text{
+    color: $sms;
+}
+
+.red-text {
+    color: $red;
+}
+
+.email-text {
+    color: $email
+}
+
+.sms-text{
+    color: $sms;
+}
+
+.pull-right {
+    float: right;
+}
+
+.tac {
+    text-align: center;
+}
+
+.hidden-menu {
+    position: absolute;
+    display: inline-block;
+    z-index: 1;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    font-size: 12px;
+    line-height: 35px;
+    @include border-radius(3px);
+    @include box-shadow(0 3px 3px rgba(#030000, .07));
+    @include user-select(none);
+    opacity: 0;
+    @include transform(scale(0, 0));
+    @include transform-origin(center top);
+    @include transition();
+    will-change: transform, opacity;
+    
+    &.active {
+        opacity: 1;
+        @include transform(scale(1, 1));
+    }
+    
+    @at-root .hidden-menu-trigger {
+        &:hover,
+        &.active {
+            .hidden-menu {
+                opacity: 1;
+                @include transform(scale(1, 1));
+            }
+        }
+    }
+    
+    li {
+        padding: 0 15px;
+        @include ellipsis();
+        color: $color-light-content;
+        
+        &:not(.readonly) {
+            cursor: pointer;
+        }
+        
+        &:hover,
+        &:active {
+            color: $color-content;
+            background-color: #f0f0f0;
+        }
+        
+        &.active {
+            color: white;
+            background-color: $sms;
+        }
+    }
+}
+
+// vue transition: fade
+.fade-enter-active,
+.fade-leave-active {
+    @include transition(opacity .3s ease)
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0
+}
+
+// vue transition: drop
+.drop-enter-active {
+    @include transform(translateY(0));
+    opacity: 1;
+    @include transition();
+}
+
+.drop-leave-active {
+    @include transform(translateY(-10px));
+    opacity: 0;
+    @include transition(all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0));
+}
+
+.drop-enter {
+    @include transform(translateY(-10px));
+    opacity: .5;
+}
+

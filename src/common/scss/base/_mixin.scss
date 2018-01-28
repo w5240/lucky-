@@ -1,0 +1,216 @@
+@charset "UTF-8";
+
+@import "./variables";
+
+/**
+ * 单行文本溢出时使用"..."结尾
+ */
+@mixin ellipsis($display: '',$max-width: '') {
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    display: $display;
+    max-width: $max-width;
+}
+
+/**
+ * clear fix for float
+ */
+@mixin clearfix($direction: both) {
+    &:before {
+        content: '';
+        display: table;
+    }
+    &:after {
+        display: table;
+        clear: $direction;
+        content: '';
+    }
+}
+
+/**
+ * placeholder
+ */
+@mixin placeholder($color: $gray, $size: 12px, $style: normal, $opacity: 1) {
+    &::-webkit-input-placeholder {
+        opacity: $opacity;
+        color: $color;
+        font-size: $size;
+        font-style: $style;
+    }
+
+    &:-moz-placeholder {
+        opacity: $opacity;
+        color: $color;
+        font-size: $size;
+        font-style: $style;
+    }
+
+    &::-moz-placeholder {
+        opacity: $opacity;
+        color: $color;
+        font-size: $size;
+        font-style: $style;
+    }
+
+    &:-ms-input-placeholder {
+        opacity: $opacity;
+        color: $color;
+        font-size: $size;
+        font-style: $style;
+    }
+}
+
+/**
+ * appearance
+ */
+@mixin appearance($content) {
+    -webkit-appearance: $content;
+    -moz-appearance: $content;
+    appearance: $content;
+}
+
+/**
+ * selection behavior
+ */
+@mixin user-select($content) {
+    -webkit-user-select: $content;
+    -moz-user-select: $content;
+    -ms-user-select: $content;
+    user-select: $content;
+}
+
+@mixin selection($color, $bg) {
+    &::selection {
+        color: $color;
+        background-color: $bg;
+    }
+    &::-moz-selection {
+        color: $color;
+        background-color: $bg;
+    }
+}
+
+/**
+ * transition
+ */
+@mixin transition($setting: all .2s ease, $rest...) {
+    -webkit-transition: $setting, $rest;
+    -moz-transition: $setting, $rest;
+    -ms-transition: $setting, $rest;
+    -o-transition: $setting, $rest;
+    transition: $setting, $rest;
+}
+
+@mixin transition-property($properties...) {
+    -webkit-transition-property: $properties;
+    -moz-transition-property: $properties;
+    -ms-transition-property: $properties;
+    -o-transition-property: $properties;
+    transition-property: $properties;
+}
+
+/**
+ * transform
+ */
+@mixin transform($content) {
+    -webkit-transform: $content;
+    -moz-transform: $content;
+    -ms-transform: $content;
+    -o-transform: $content;
+    transform: $content;
+}
+
+/**
+ * transform origin
+ */
+@mixin transform-origin($origin) {
+    -webkit-transform-origin: $origin;
+    -moz-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    transform-origin: $origin;
+}
+
+/**
+ * box-shadow
+ */
+@mixin box-shadow($content) {
+    -webkit-box-shadow: $content;
+    -moz-box-shadow: $content;
+    box-shadow: $content;
+}
+
+/**
+ * 圆角
+ */
+@mixin border-radius($content) {
+    -webkit-border-radius: $content;
+    -moz-border-radius: $content;
+    border-radius: $content;
+}
+
+@mixin box-sizing($content: border-box) {
+    -webkit-box-sizing: $content;
+    -moz-box-sizing: $content;
+    box-sizing: $content;
+}
+
+// 动画
+@mixin animation($content...) {
+    -webkit-animation: $content;
+    -o-animation: $content;
+    animation: $content;
+}
+
+// 动画帧
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content
+    }
+
+    @-moz-keyframes #{$name} {
+        @content
+    }
+
+    @-webkit-keyframes #{$name} {
+        @content
+    }
+
+    @-o-keyframes #{$name} {
+        @content
+    }
+}
+
+// bg image repeating linear gradient
+@mixin repeating-linear-gradient($content...) {
+    background-image: -moz-repeating-linear-gradient($content);
+    background-image: -webkit-repeating-linear-gradient($contact);
+    background-image: -o-repeating-linear-gradient($content);
+    background-image: -ms-repeating-linear-gradient($content);
+    background-image: repeating-linear-gradient($content);
+}
+
+// linear-gradient
+@mixin linear-gradient($content...) {
+    background-image: -webkit-linear-gradient($content);
+    background-image: -moz-linear-gradient($content);
+    background-image: -o-linear-gradient($content);
+    background-image: linear-gradient($content);
+}
+
+// 背景图尺寸
+@mixin background-size($content) {
+    -webkit-background-size: $content;
+    background-size: $content;
+}
+
+// 灰度
+@mixin grayscale($scale) {
+    -webkit-filter: grayscale($scale);
+    -moz-filter: grayscale($scale);
+    -ms-filter: grayscale($scale);
+    -o-filter: grayscale($scale);
+    filter: grayscale($scale);
+}
