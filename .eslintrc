@@ -1,0 +1,12 @@
+{
+  "parser": "babel-eslint",
+  // required to lint *.vue-plugin files
+  "plugins": [
+    "html"
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+  }
+}

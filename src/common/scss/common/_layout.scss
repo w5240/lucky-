@@ -1,0 +1,246 @@
+@charset "utf-8";
+
+@import "../base/variables";
+@import "../base/mixin";
+
+.hidden-menu {
+    position: absolute;
+    z-index: 1;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    font-size: 12px;
+    line-height: 35px;
+    @include border-radius(3px);
+    @include box-shadow(0 3px 3px rgba(#030000, .07));
+    @include user-select(none);
+    opacity: 0;
+    @include transform(scale(0, 0));
+    @include transform-origin(center top);
+    @include transition();
+    will-change: transform, opacity;
+
+    &.active {
+        opacity: 1;
+        @include transform(scale(1, 1));
+    }
+
+    @at-root .hidden-menu-trigger {
+        &:hover,
+        &.active {
+            .hidden-menu {
+                opacity: 1;
+                @include transform(scale(1, 1));
+            }
+        }
+    }
+
+    li {
+        padding: 0 15px;
+        @include ellipsis();
+        color: $color-light-content;
+        cursor: pointer;
+
+        &:not(.readonly) {
+            cursor: pointer;
+        }
+
+        &:hover,
+        &:active {
+            color: $color-content;
+            background-color: #f0f0f0;
+        }
+    }
+}
+
+$page-btn-height: 35px;
+.page-top {
+    @include clearfix();
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #0cc2a9;
+
+    .page-top-line {
+        @include clearfix();
+
+        .form-field {
+            padding-right: 0;
+            float: left;
+            width: -webkit-calc(100% - 350px);
+            width: calc(100% - 350px);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .label {
+                text-align: left;
+                width: auto;
+            }
+
+            .input-field {
+                float: left;
+                width: 20%;
+                text-align: right;
+            }
+
+            .line {
+                display: inline-block;
+                float: left;
+                color: #e0e0e0;
+                width: 3em;
+                text-align: center;
+            }
+
+            .calendarWrapper {
+                float: left;
+                width: 20%;
+            }
+
+            .calendarWrapper .calendar .calendar-header input {
+                display: block;
+            }
+
+            .calendarWrapper .calendar-date input[type='text'] {
+                width: 100%;
+                display: block;
+                text-align: right;
+                @include box-sizing();
+                height: $input-field-height;
+                padding: 0 1em;
+                border: 1px solid #e0e0e0;
+                @include border-radius(2px);
+                background-color: white;
+                line-height: $input-field-height - 2px;
+                vertical-align: top;
+
+                &.error {
+                    border-color: $light-red;
+                    background-color: $light-red;
+                }
+
+                &:focus {
+                    border-color: $gray;
+                }
+            }
+
+            .btn {
+                float: left;
+                margin-left: 3em;
+                background-color: #0cc2a9;
+                color: #fff;
+            }
+
+            .vue-select {
+                float: left;
+            }
+        }
+
+        + .page-top-line {
+            margin-top: 20px;
+        }
+    }
+
+    .searchBox {
+        float: right;
+        box-sizing: border-box;
+        border: 1px solid #e0e0e0;
+        @include clearfix();
+
+        .search-type {
+            float: left;
+            border: none;
+            border-right: 1px solid #e0e0e0;
+            .select-text input[type="text"] {
+                border: none;
+            }
+        }
+
+        .search-input {
+            float: left;
+            box-sizing: border-box;
+            height: $page-btn-height;
+            padding: 10px;
+            border-color: transparent;
+        }
+
+        .icon {
+            cursor: pointer;
+            float: left;
+            padding: 10px 7px;
+            font-size: 14px;
+        }
+    }
+}
+
+.mbe-wrapper {
+    min-width: 910px;
+    padding: 2em;
+    border: 1px solid #0cc2a9;
+    border-radius: 3px;
+    background-color: white;
+
+    // 页面标题
+    .mbe-title {
+        margin: 0 0 20px;
+        padding: 0 0 0 10px;
+        border-left: solid 4px #0cc2a9;
+        font-size: 18px;
+        font-weight: normal;
+    }
+
+    .page-top + .page-main {
+        padding-top: 15px;
+    }
+    .page-main {
+        .pages {
+            float: right;
+        }
+
+        .pages.big li.active {
+            border-color: #0cc2a9;
+            background-color: #0cc2a9;
+        }
+
+        //内容展示
+        .info-field {
+            font-size: 14px;
+            min-height: $input-field-height;
+            line-height: $input-field-height;
+            @include clearfix();
+
+            + .info-field {
+                margin-top: 20px;
+            }
+
+            .title-field {
+                float: left;
+                width: 9em;
+                margin-right: 2em;
+                padding-left: 1em;
+            }
+
+            .text-field {
+                float: left;
+                max-width: -webkit-calc(100% - 12em);
+                max-width: calc(100% - 12em);
+            }
+
+            .btn {
+                float: left;
+                background-color: #0cc2a9;
+                color: #fff;
+
+                + .btn {
+                    margin-left: 2em;
+                }
+            }
+        }
+    }
+    .page-main table td {
+        word-break: break-all;
+    }
+    //弹出层
+
+    .backdrop {
+        position: fixed;
+    }
+}

@@ -1,0 +1,218 @@
+@charset "UTF-8";
+
+@import "../base/variables";
+@import "../base/mixin";
+
+.page-head {
+    position: relative;
+    padding: 18px 20px;
+    text-align: right;
+    @include clearfix();
+    
+    $page-head-content-height: $page-head-height - (18px * 2);
+    
+    .crumb-nav {
+        float: left;
+        line-height: $page-head-content-height - 24px;
+    }
+    
+    h2 {
+        float: left;
+        clear: left;
+        font-weight: normal;
+    }
+    
+    .search-box {
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+        width: 295px;
+        height: $page-head-content-height;
+        margin: 0 10px;
+        vertical-align: top;
+        @include border-radius($page-head-content-height/2);
+        @include transition();
+        @at-root {
+            .contact-theme &:hover,
+            .material-theme &:hover {
+                @include box-shadow(0 0 3px $contact);
+            }
+            
+            .journey-theme &:hover {
+                @include box-shadow(0 0 3px $sms);
+            }
+        }
+        
+        input[type="text"] {
+            @include box-sizing();
+            display: block;
+            height: 100%;
+            width: 100%;
+            padding: $page-head-content-height/4 30px $page-head-content-height/4 20px;
+            line-height: $page-head-content-height/2;
+            border: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+            @include border-radius($page-head-content-height/2);
+            @include transition();
+            @at-root {
+                .contact-theme &:focus,
+                .material-theme &:focus {
+                    @include box-shadow(inset 0 0 3px 1px $contact);
+                    @include placeholder(transparent);
+                    
+                    + .icon-search {
+                        color: $contact;
+                    }
+                }
+                
+                .journey-theme &:focus {
+                    @include box-shadow(inset 0 0 3px 1px $sms);
+                    @include placeholder(transparent);
+                    
+                    + .icon-search {
+                        color: $sms;
+                    }
+                }
+            }
+        }
+        
+        .icon-search {
+            position: absolute;
+            right: ($page-head-content-height - 14px)/2;
+            top: ($page-head-content-height - 14px)/2;
+            border: none;
+            font-size: 14px;
+            color: $color-gray-content;
+            background-color: transparent;
+            cursor: pointer;
+            
+            &:hover {
+                color: $color-content;
+            }
+        }
+    }
+    
+    .head-tabs {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        @include transform(translateX(-50%));
+        text-align: center;
+        @include user-select(none);
+        
+        .tab {
+            display: inline-block;
+            margin: 0 1em;
+            padding: 0 .5em;
+            font-size: 16px;
+            line-height: 37px;
+            color: $color-light-content;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            @include transition(border-color .2s ease);
+            
+            &:hover,
+            &:active {
+                color: $contact;
+            }
+            
+            &.router-link-active,
+            &.active {
+                color: $contact;
+                border-bottom-color: $contact;
+            }
+        }
+    }
+}
+
+.status-message {
+    padding: 0 20px;
+    line-height: $page-status-height;
+    font-size: 14px;
+    @include ellipsis();
+    
+    &.success {
+        color: $green;
+        background-color: $light-green;
+    }
+    
+    &.progress {
+        color: $yellow;
+        background-color: $light-yellow;
+    }
+    
+    &.info {
+        color: $blue;
+        background-color: $light-blue;
+    }
+}
+
+.page-content {
+    // magic numbers come from header.vue, page-head, and content padding
+    $used-height: $header-height + $page-head-height + 20px;
+    height: -webkit-calc(100vh - #{$used-height});
+    height: calc(100vh - #{$used-height});
+    overflow: auto;
+    background-color: white;
+    padding: 0 20px 20px;
+    @include clearfix();
+    
+    // page-content 内部的table
+    .table {
+        margin-right: -webkit-calc(40px + 100% - 100vw);
+        margin-right: calc(40px + 100% - 100vw);
+    }
+}
+
+.search-empty {
+    padding-top: 290px;
+    text-align: center;
+    font-weight: normal;
+    background: url("../../common/images/list-search.png") no-repeat center 100px;
+    cursor: default;
+    
+    span {
+        cursor: pointer;
+        @at-root {
+            .contact-theme &:active,
+            .material-theme &:active {
+                color: $contact-active;
+            }
+            
+            .journey-theme &:active {
+                color: $sms-active;
+            }
+        }
+    }
+}
+
+.empty-list {
+    padding-top: 10vh;
+    text-align: center;
+    cursor: default;
+    
+    .list-icon {
+        display: block;
+        margin: 0 auto 35px;
+    }
+    
+    h5 {
+        margin-bottom: 15px;
+    }
+}
+
+.list-enter-active,
+.list-leave-active {
+    @include transition();
+}
+
+.list-enter,
+.list-leave-active {
+    @include transform(scale(0));
+    opacity: 0;
+}
+
+.list-move {
+    @include transition();
+}

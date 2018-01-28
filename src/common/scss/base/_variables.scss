@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+/**
+ * 字体
+ */
+$font: Microsoft Yahei, Arial, Helverica Neue, helvetica, sans-serif;
+
+/**
+ * 颜色
+ */
+// common
+$green: #3b9641;
+$light-green: #d8ecc6;
+$red: #cc3333;
+$light-red: #ffcccc;
+$yellow: #b48804;
+$light-yellow: #fbe9a1;
+$blue: #006699;
+$light-blue: #c5eaf3;
+$gray: #cccccc;
+$white:#fff;
+
+// tbd
+$orange: #ff7139;
+$purple: #624cbf;
+
+// system themes
+$contact: #fb6f40;
+$contact-active: #d96031;
+$contact-disabled: #ff9c75;
+$sms-progress-value:#191919;
+$disabled: #9fa2a1;
+$email: #624cbf;
+$mrtb: #66bef1;
+$sms: #0cc2a9; // 高级用户
+$sms-active: #0bb49d;
+$sms-disabled: #acf0d5;
+$sms-hover:#0aa590;
+
+/**
+ * typography
+ */
+$color-content: #333333;
+$color-light-content: #666666;
+$color-gray-content: #999999;
+
+/**
+ * 层级
+ */
+$index-header: 10;
+$index-mask: 20;
+$index-popup: 30;
+$index-btn:3;
+
+/**
+ * 布局相关
+ */
+$header-height: 60px;
+$page-head-height: 81px;
+$page-status-height: 50px;
+$header-bg: #424242;
+$header-bg-active: #323232;
+$content-bg: #eeeeee;
+$btn-border: #e0e0e0;
+$select-arrow: #f2f2f2;
+$sidebar-width:190px;
+
+// 输入框高度, 包含边框
+$input-field-height: 35px;
+
+/**
+ * 素材项目尺寸
+ */
+$material-width: 230px;
+$material-height: 265px;
+$material-preview-height: 199px;
+
+// table variables
+$thead-height: 41px;
+$tbody-height: 46px;

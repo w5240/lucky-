@@ -1,0 +1,199 @@
+@charset "UTF-8";
+
+@import "../base/variables";
+@import "../base/mixin";
+
+.form-field {
+    padding-right: 2em;
+    line-height: $input-field-height;
+    text-align: right;
+    font-size: 14px;
+    
+    + .form-field {
+        margin-top: 30px;
+    }
+    
+    .label {
+        float: left;
+        width: 5em;
+        padding-right: 1em;
+        color: $color-light-content;
+        
+        + .input-field{
+            width: -webkit-calc(100% - 6em);
+            width: calc(100% - 6em);
+        }
+    }
+    
+    .input-field {
+        display: inline-block;
+        @include box-sizing();
+        height: $input-field-height;
+        padding: 5px 1em;
+        border: 1px solid #e0e0e0;
+        @include border-radius(2px);
+        background-color: white;
+        line-height: $input-field-height - 12px;
+        vertical-align: top;
+        text-align: left;
+
+
+        &[disabled] {
+            background-color: #e0e0e0;
+        }
+
+        &.half {
+            width: -webkit-calc(50% - 9em);
+            width: calc(50% - 9em);
+        }
+        &.remind_number{
+            width: 130px;
+            border: #dce7ed 1px solid;
+            border-radius: 3px;
+
+            &:focus{
+                border-color: #0aa590;
+            }
+        }
+        &.error {
+            border-color: $light-red;
+            background-color: $light-red;
+
+            + .field-tip {
+                margin-top: 1.5em;
+            }
+        }
+
+        &:focus {
+            border-color: $gray;
+        }
+    }
+    .input-icon-box {
+        display: inline-block;
+        position: relative;
+        width: -webkit-calc(100% - 9em);
+        width: calc(100% - 9em);
+
+        .input-field {
+            width: 100%;
+            padding-right: 3em;
+        }
+
+        &.half {
+            width: -webkit-calc(50% - 9em);
+            width: calc(50% - 9em);
+        }
+        .icon {
+            position: absolute;
+            right: 1em;
+            top: 0;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+    .select-field {
+        display: inline-block;
+        width: -webkit-calc(100% - 9em);
+        width: calc(100% - 9em);
+        &.half {
+            width: -webkit-calc(50% - 9em);
+            width: calc(50% - 9em);
+        }
+    }
+
+    .field-group {
+        display: inline-block;
+        @include box-sizing();
+        width: -webkit-calc(100% - 6em);
+        width: calc(100% - 6em);
+        height: $input-field-height;
+        white-space: nowrap;
+        
+        > [type="text"] {
+            border: 1px solid #e0e0e0;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+            padding: 5px 1em;
+            line-height: $input-field-height - 12px;
+            vertical-align: top;
+            text-align: left;
+            
+            &.error {
+                border-color: $light-red;
+                background-color: $light-red;
+            }
+        }
+        
+        .field-tail-btn-group{
+            position: relative;
+            float: right;
+            border: 1px solid #e0e0e0;
+            border-left: none;
+            background-color: #f0f0f0;
+            
+            [type="text"] {
+                position: relative;
+                z-index: 1;
+                display: block;
+                width: 74px;
+                padding: 5px 1em;
+                border: none;
+                background-color: transparent;
+                border-top-right-radius: 2px;
+                border-bottom-right-radius: 2px;
+                line-height: $input-field-height - 12px;
+                cursor: pointer;
+                @include user-select(none);
+                @include appearance(button);
+            }
+            
+            .icon-caret-down:before{
+                position: absolute;
+                top: 0;
+                right: 5px;
+            }
+            
+            .hidden-menu{
+                z-index: $index-popup;
+                width: 100%;
+                margin-left: -1px;
+                overflow: auto;
+                max-height: $input-field-height * 5;
+            }
+        }
+        
+        .field-tail-btn {
+            float: right;
+            padding: 0 1em;
+            border: 1px solid #e0e0e0;
+            border-left: none;
+            background-color: #f0f0f0;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+            line-height: $input-field-height - 2px;
+            vertical-align: top;
+            cursor: pointer;
+        }
+    }
+    
+    textarea {
+        @include box-sizing();
+        width: -webkit-calc(100% - 6em);
+        width: calc(100% - 6em);
+        min-height: 10em;
+        margin: 10px 0;
+        padding: 1em;
+        resize: vertical;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: left;
+        vertical-align: top;
+        border: 1px solid #e0e0e0;
+        @include border-radius(2px);
+        
+        &.error {
+            border-color: $light-red;
+            background-color: $light-red;
+        }
+    }
+}
